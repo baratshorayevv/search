@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Search Results</title>
+</head>
+<body>
+    <h1>Search Results</h1>
+    <form method="get" action="{% url 'product_search' %}">
+        <input type="text" name="q" placeholder="Search comments..." value="{{ request.GET.q }}">
+        <button type="submit">Search</button>
+    </form>
+    <ul>
+        {% if products %}
+            {% for product in products %}
+                <li><a href="{% url 'product_detail' product.pk %}">{{ product.name }}</a></li>
+            {% endfor %}
+        {% else %}
+            <li>No products found</li>
+        {% endif %}
+    </ul>
+</body>
+</html>
